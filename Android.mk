@@ -21,6 +21,10 @@
 # IN THE SOFTWARE.
 #
 
+# Two identical libs are defined here.
+# libdrm: for vendors. installed to /vendor/lib. libdrm_<vendor> uses this.
+# libdrm_platform: for platform modules (such as libminui). installed to /system/lib
+
 LIBDRM_ANDROID_MAJOR_VERSION := $(word 1, $(subst ., , $(PLATFORM_VERSION)))
 ifneq ($(filter 2 4, $(LIBDRM_ANDROID_MAJOR_VERSION)),)
 $(error "Android 4.4 and earlier not supported")
@@ -38,7 +42,41 @@ include $(LOCAL_PATH)/Makefile.sources
 
 #static library for the device (recovery)
 include $(CLEAR_VARS)
+
+LOCAL_MODULE := libdrm_platform
+
+LOCAL_SRC_FILES := $(LIBDRM_FILES)
+LOCAL_EXPORT_C_INCLUDE_DIRS := \
+       $(LOCAL_PATH) \
+       $(LOCAL_PATH)/include/drm
+
+LOCAL_C_INCLUDES := \
+       $(LOCAL_PATH)/include/drm
+
+include $(LIBDRM_COMMON_MK)
+include $(BUILD_STATIC_LIBRARY)
+
+# Dynamic library for the device
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libdrm_platform
+
+LOCAL_SRC_FILES := $(LIBDRM_FILES)
+LOCAL_EXPORT_C_INCLUDE_DIRS := \
+       $(LOCAL_PATH) \
+       $(LOCAL_PATH)/include/drm
+
+LOCAL_C_INCLUDES := \
+       $(LOCAL_PATH)/include/drm
+
+include $(LIBDRM_COMMON_MK)
+include $(BUILD_SHARED_LIBRARY)
+
+# Static library for the device (recovery)
+include $(CLEAR_VARS)
+
 LOCAL_MODULE := libdrm
+LOCAL_VENDOR_MODULE := true
 
 LOCAL_SRC_FILES := $(LIBDRM_FILES)
 LOCAL_EXPORT_C_INCLUDE_DIRS := \
@@ -55,6 +93,7 @@ include $(BUILD_STATIC_LIBRARY)
 # Shared library for the device
 include $(CLEAR_VARS)
 LOCAL_MODULE := libdrm
+LOCAL_VENDOR_MODULE := true
 
 LOCAL_SRC_FILES := $(LIBDRM_FILES)
 LOCAL_EXPORT_C_INCLUDE_DIRS := \
