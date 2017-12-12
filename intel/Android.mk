@@ -28,6 +28,7 @@ include $(CLEAR_VARS)
 include $(LOCAL_PATH)/Makefile.sources
 
 LOCAL_MODULE := libdrm_intel
+LOCAL_VENDOR_MODULE := true
 
 LOCAL_SRC_FILES := $(LIBDRM_INTEL_FILES)
 
