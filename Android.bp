@@ -26,6 +26,12 @@ build = ["Android.sources.bp"]
 
 cc_defaults {
     name: "libdrm_defaults",
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+    ],
+
     cflags: [
         // XXX: Consider moving these to config.h analogous to autoconf.
         "-DMAJOR_IN_SYSMACROS=1",
