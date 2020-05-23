@@ -146,6 +146,7 @@ drmModeSetCursor2
 drmModeSetPlane
 drmMsg
 drmOpen
+drmOpenByFB
 drmOpenControl
 drmOpenOnce
 drmOpenOnceWithType
