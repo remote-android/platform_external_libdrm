@@ -340,7 +340,7 @@ drm_public int amdgpu_query_video_caps_info(amdgpu_device_handle dev, unsigned c
 	memset(&request, 0, sizeof(request));
 	request.return_pointer = (uintptr_t)value;
 	request.return_size = size;
-	request.query = AMDGPU_INFO_VIDEO_CAPS;
+	request.query = 0x21 /*AMDGPU_INFO_VIDEO_CAPS*/;
 	request.sensor_info.type = cap_type;
 
 	return drmCommandWrite(dev->fd, DRM_AMDGPU_INFO, &request,
