@@ -21,9 +21,9 @@
 // IN THE SOFTWARE.
 //
 
-package {
-    default_applicable_licenses: ["external_libdrm_license"],
-}
+//package {
+//    default_applicable_licenses: ["external_libdrm_license"],
+//}
 
 // Added automatically by a large-scale-change that took the approach of
 // 'apply every license found to every target'. While this makes sure we respect
@@ -39,16 +39,16 @@ package {
 // to attach the license to, and including a comment whether the files may be
 // used in the current project.
 // See: http://go/android-license-faq
-license {
-    name: "external_libdrm_license",
-    visibility: [":__subpackages__"],
-    license_kinds: [
-        "SPDX-license-identifier-BSD",
-        "SPDX-license-identifier-MIT",
-        "legacy_unencumbered",
-    ],
-    // large-scale-change unable to identify any license_text files
-}
+//license {
+//    name: "external_libdrm_license",
+//    visibility: [":__subpackages__"],
+//    license_kinds: [
+//        "SPDX-license-identifier-BSD",
+//        "SPDX-license-identifier-MIT",
+//        "legacy_unencumbered",
+//    ],
+//    // large-scale-change unable to identify any license_text files
+//}
 
 subdirs = ["*"]
 build = ["Android.sources.bp"]
@@ -73,7 +73,8 @@ cc_defaults {
         "-Wno-unused-parameter",
         "-Wno-unused-variable",
     ],
-    export_system_include_dirs: ["."],
+    //export_system_include_dirs: ["."],
+    export_include_dirs: ["."],
 }
 
 cc_library_headers {
@@ -103,8 +104,8 @@ cc_library {
         "-Wno-sign-compare",
         "-Wno-tautological-compare",
     ],
-    apex_available: [
-        "//apex_available:platform",
-        "com.android.virt",
-    ],
+    //apex_available: [
+    //    "//apex_available:platform",
+    //    "com.android.virt",
+    //],
 }
