@@ -88,7 +88,7 @@ cc_library_headers {
 // Library for the device
 cc_library {
     name: "libdrm",
-    recovery_available: true,
+//    recovery_available: true,
     vendor_available: true,
     host_supported: true,
     defaults: [
